@@ -28,7 +28,7 @@ class AdvertsFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
 
         // Create an instance of the adapter
-        val postAdapter = PostAdapter(postModelList)
+        val postAdapter = PostAdapter()
 
         // Set the adapter to the RecyclerView
         recyclerView.adapter = postAdapter
@@ -40,6 +40,8 @@ class AdvertsFragment : Fragment() {
 
         return view
     }
+
+
 }
 
 

@@ -13,7 +13,7 @@ import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
 
 // PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
-class PostAdapter(postModelList: PostModel) : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
+class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_post, parent, false)
         return PostViewHolder(view)

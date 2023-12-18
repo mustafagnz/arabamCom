@@ -15,17 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-        mainViewModel.post.observe(this) { postModelList ->
-            // Veriler güncellendiğinde RecyclerView'a set et
-            val adapter = PostAdapter(postModelList)
-            recyclerView.adapter = adapter
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, AdvertsFragment())
+            .commit()
 
 
     }
