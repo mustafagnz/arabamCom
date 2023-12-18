@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    android:id="@+id/advertDetailScreen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.AdvertDetailsFragment">
+    tools:context=".ui.AdvertDetailsFragment"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,7 +55,7 @@
             </LinearLayout>
 
             <!-- Ilan Fotoğrafları ve Detayları -->
-            <androidx.viewpager.widget.ViewPager
+            <ImageView
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -113,7 +116,7 @@
                 android:textStyle="bold"
                 android:layout_below="@id/locationLayout"
                 android:paddingLeft="12dp"/>
-
+            <!-- Fiyat
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
@@ -132,7 +135,7 @@
                 android:layout_below="@id/tabLayout"
                 android:background="@color/white"/>
 
-
+-->
         </RelativeLayout>
 
     </ScrollView>

@@ -1,5 +1,7 @@
 package com.test.arabamcom.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
@@ -7,21 +9,44 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
+import com.test.arabamcom.ui.AdvertDetailsFragment
+import com.test.arabamcom.ui.MainViewModel
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+
 
 // PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
 class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_post, parent, false)
         return PostViewHolder(view)
     }
 
+    // PostAdapter
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bindView(getItem(position))
+        val post = getItem(position)
+        holder.bindView(post)
+
+        holder.itemView.setOnClickListener {
+            val activity = it.context as AppCompatActivity
+            val advertDetailsFragment = AdvertDetailsFragment()
+
+
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, advertDetailsFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
+
+
 }
 
 // PostModelDiffCallback sınıfını ekliyoruz

@@ -24,22 +24,29 @@ class MainViewModel : ViewModel() {
     val hasError: LiveData<Boolean>
         get() = _hasError
 
+
+    private val _selectedPost = MutableLiveData<PostModel>()
+    val selectedPost: LiveData<PostModel> get() = _selectedPost
+
+    fun setSelectedPost(post: PostModel) {
+        _selectedPost.value = post
+    }
+    // MainViewModel
     fun fetchPost(){
-        viewModelScope.launch{
+        viewModelScope.launch {
             val response = ApiService.api.fetchPost()
             if (response.isSuccessful){
-                response.body()?.let {post ->
+                response.body()?.let { post ->
                     _post.value = post
+                    _selectedPost.value = post // Seçili postu set ediyoruz
                     _hasError.value = false
-
-                }?:run {
+                } ?: run {
                     _hasError.value = true
                 }
-            }
-            else{
+            } else {
                 _hasError.value = true
             }
-
         }
     }
+
 }
