@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.AdvertDetailsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- TabBar -->
+            <LinearLayout
+                android:id="@+id/tabBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <!-- Back Button -->
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/back" />
+
+                <!-- Ilan Detayı Tab -->
+                <TextView
+                    android:id="@+id/tabIlanDetayi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="İlan Detayı"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Paylaş Button -->
+                <ImageButton
+                    android:id="@+id/shareButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/share" />
+            </LinearLayout>
+
+            <!-- Ilan Fotoğrafları ve Detayları -->
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/tabBarLayout" />
+
+            <!-- Ilan Başlığı -->
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPager"
+                android:padding="10dp"
+                android:text="Sahibinden volskwagen cc 1.4 TSİ 2016 Model"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- İl ve İlçe -->
+            <LinearLayout
+                android:id="@+id/locationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textTitle"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <!-- ikon -->
+                <ImageView
+                    android:id="@+id/konumIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_location_on_16" />
+
+                <!-- İlçe -->
+                <TextView
+                    android:id="@+id/textIlce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="İlçe Adı,"
+                    android:textSize="14sp" />
+
+                <!-- İl -->
+                <TextView
+                    android:id="@+id/textIl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="İl Adı"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Fiyat -->
+            <TextView
+                android:id="@+id/textFiyat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.085.000 TL"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_below="@id/locationLayout"
+                android:paddingLeft="12dp"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/red"
+                app:tabSelectedTextColor="@color/red"
+                app:tabTextColor="@color/black"
+                android:layout_below="@id/textFiyat"
+                app:tabTextAppearance="@style/TabLayoutTextStyle"/>
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerTabs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tabLayout"
+                android:background="@color/white"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</FrameLayout>
