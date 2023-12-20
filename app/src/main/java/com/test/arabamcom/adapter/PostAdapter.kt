@@ -1,7 +1,6 @@
 package com.test.arabamcom.adapter
 
-import android.content.Intent
-import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
@@ -23,33 +22,46 @@ import androidx.lifecycle.ViewModel
 // PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
 class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
 
+    private var postList: ArrayList<PostModel> = ArrayList()
+
+    fun addPosts(posts: List<PostModel>) {
+        postList.clear()
+        postList.addAll(posts)
+        notifyDataSetChanged()
+
+        //printDataToConsole()
+    }
+
+    private fun printDataToConsole() {
+        for (post in postList) {
+            Log.d("PostAdapter", "Post ID: ${post.id}, Title: ${post.title}, City: ${post.location.cityName}, Town: ${post.location.townName}, Price: ${post.price}")
+
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_post, parent, false)
         return PostViewHolder(view)
     }
 
-    // PostAdapter
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post = getItem(position)
-        holder.bindView(post)
+        if (postList.isNotEmpty()) {
+            val post = postList[position]
+            holder.bindView(post)
 
-        holder.itemView.setOnClickListener {
-            val activity = it.context as AppCompatActivity
-            val advertDetailsFragment = AdvertDetailsFragment()
+            holder.itemView.setOnClickListener {
+                val activity = it.context as AppCompatActivity
+                val advertDetailsFragment = AdvertDetailsFragment()
 
-
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, advertDetailsFragment)
-                .addToBackStack(null)
-                .commit()
+                activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, advertDetailsFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     }
-
-
 }
 
-// PostModelDiffCallback sınıfını ekliyoruz
 class PostModelDiffCallback : DiffUtil.ItemCallback<PostModel>() {
     override fun areItemsTheSame(oldItem: PostModel, newItem: PostModel): Boolean {
         return oldItem.id == newItem.id
@@ -60,7 +72,6 @@ class PostModelDiffCallback : DiffUtil.ItemCallback<PostModel>() {
     }
 }
 
-// PostViewHolder sınıfını güncelliyoruz
 class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val ilanBaslik: TextView = itemView.findViewById(R.id.ilanBaslik)
     private val ilanIl: TextView = itemView.findViewById(R.id.ilanIl)
@@ -81,4 +92,3 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(ilanResim)
     }
 }
-

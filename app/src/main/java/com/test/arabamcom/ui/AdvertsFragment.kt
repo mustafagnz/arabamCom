@@ -33,8 +33,8 @@ class AdvertsFragment : Fragment() {
         // Set the adapter to the RecyclerView
         recyclerView.adapter = postAdapter
 
-        mainViewModel.post.observe(viewLifecycleOwner) { postModelList ->
-            postAdapter.submitList(listOf(postModelList))
+        mainViewModel.post.observe(viewLifecycleOwner) { postModel ->
+            postAdapter.addPosts(listOf(postModel))
         }
 
 
