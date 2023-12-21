@@ -34,7 +34,7 @@ class AdvertsFragment : Fragment() {
         recyclerView.adapter = postAdapter
 
         mainViewModel.post.observe(viewLifecycleOwner) { postModel ->
-            postAdapter.addPosts(listOf(postModel))
+            postAdapter.addPosts(postModel)
         }
 
 

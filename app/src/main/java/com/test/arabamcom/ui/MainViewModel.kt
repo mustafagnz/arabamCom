@@ -11,9 +11,10 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val _post = MutableLiveData<PostModel>()
-    val post: LiveData<PostModel>
+    private val _post = MutableLiveData<List<PostModel>>()
+    val post: LiveData<List<PostModel>>
         get() = _post
+
 
 
     init {
@@ -36,9 +37,8 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             val response = ApiService.api.fetchPost()
             if (response.isSuccessful){
-                response.body()?.let { post ->
-                    _post.value = post
-                    _selectedPost.value = post // Seçili postu set ediyoruz
+                response.body()?.let { posts ->
+                    _post.value = posts // API'den dönen PostModel listesini alıyoruz
                     _hasError.value = false
                 } ?: run {
                     _hasError.value = true
@@ -48,5 +48,7 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+
 
 }

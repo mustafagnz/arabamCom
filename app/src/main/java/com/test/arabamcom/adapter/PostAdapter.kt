@@ -28,8 +28,8 @@ class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback
         postList.clear()
         postList.addAll(posts)
         notifyDataSetChanged()
-
-        //printDataToConsole()
+        submitList(posts)
+        printDataToConsole()
     }
 
     private fun printDataToConsole() {
@@ -60,6 +60,8 @@ class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback
             }
         }
     }
+
+
 }
 
 class PostModelDiffCallback : DiffUtil.ItemCallback<PostModel>() {
@@ -85,10 +87,17 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         ilanIlce.text = postModel.location.townName
         ilanFiyat.text = (postModel.price.toString() + "TL")
 
-        Glide.with(itemView.context)
-            .load(postModel.photos.firstOrNull())
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_foreground)
-            .into(ilanResim)
+        // PostModel.photos boş değilse ve en az bir fotoğraf varsa Glide kullan
+        if (!postModel.photos.isNullOrEmpty()) {
+            Glide.with(itemView.context)
+                .load(postModel.photos.first())
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(ilanResim)
+        } else {
+            // Eğer fotoğraf yoksa varsayılan bir resim kullanabilirsiniz
+            ilanResim.setImageResource(R.drawable.ic_launcher_background)
+        }
     }
+
 }

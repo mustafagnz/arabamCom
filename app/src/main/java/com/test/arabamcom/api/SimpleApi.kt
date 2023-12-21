@@ -4,8 +4,9 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface SimpleApi {
-    @GET("detail?id=15207658")
-    suspend fun fetchPost(): Response<PostModel>
+    @GET("listing?sort=1&sortDirection=0&take=10")
+    suspend fun fetchPost(): Response<List<PostModel>>
+
 }
 
 
