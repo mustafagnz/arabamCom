@@ -15,52 +15,36 @@ import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
 import com.test.arabamcom.ui.AdvertDetailsFragment
 import com.test.arabamcom.ui.MainViewModel
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 
 
 // PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
-class PostAdapter : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
-
-    private var postList: ArrayList<PostModel> = ArrayList()
-
-    fun addPosts(posts: List<PostModel>) {
-        postList.clear()
-        postList.addAll(posts)
-        notifyDataSetChanged()
-        submitList(posts)
-        printDataToConsole()
-    }
-
-    private fun printDataToConsole() {
-        for (post in postList) {
-            Log.d("PostAdapter", "Post ID: ${post.id}, Title: ${post.title}, City: ${post.location.cityName}, Town: ${post.location.townName}, Price: ${post.price}")
-
-        }
-    }
+class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_post, parent, false)
         return PostViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        if (postList.isNotEmpty()) {
-            val post = postList[position]
-            holder.bindView(post)
+    private var onItemClickListener: ((PostModel) -> Unit)? = null
 
-            holder.itemView.setOnClickListener {
-                val activity = it.context as AppCompatActivity
-                val advertDetailsFragment = AdvertDetailsFragment()
-
-                activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, advertDetailsFragment)
-                    .addToBackStack(null)
-                    .commit()
-            }
-        }
+    fun setOnItemClickListener(listener: (PostModel) -> Unit) {
+        onItemClickListener = listener
     }
 
+    fun getPosts(title: String): List<PostModel> {
+        return currentList
+    }
+
+
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+        val post = getItem(position)
+        holder.bindView(post)
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(post)
+
+        }
+    }
 
 }
 

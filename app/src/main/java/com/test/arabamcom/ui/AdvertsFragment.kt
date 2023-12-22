@@ -1,6 +1,8 @@
 package com.test.arabamcom.ui
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,27 +23,46 @@ class AdvertsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_adverts, container, false)
+        return inflater.inflate(R.layout.fragment_adverts, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
 
-        // Create an instance of the adapter
-        val postAdapter = PostAdapter()
-
-        // Set the adapter to the RecyclerView
+        val postAdapter = PostAdapter { post ->
+            mainViewModel.setSelectedPost(post)
+            navigateToAdvertDetailsFragment()
+        }
         recyclerView.adapter = postAdapter
 
-        mainViewModel.post.observe(viewLifecycleOwner) { postModel ->
-            postAdapter.addPosts(postModel)
+        mainViewModel.post.observe(viewLifecycleOwner) { postModelList ->
+            postAdapter.submitList(postModelList)
+            Log.d(TAG, "onViewCreated: veri var")
+            // Burada, postModelList'in boş olup olmadığını kontrol edebilirsiniz
+            if (postModelList.isEmpty()) {
+                // Veri yoksa, kullanıcıya bir bildirim göstermek veya gerekli işlemleri yapmak için burada kod ekleyebilirsiniz.
+                Log.d(TAG, "onViewCreated: veri yok")
+            }
         }
 
-
-        return view
+        postAdapter.setOnItemClickListener { post ->
+            mainViewModel.setSelectedPost(post)
+            navigateToAdvertDetailsFragment()
+        }
     }
 
-
+    private fun navigateToAdvertDetailsFragment() {
+        val advertDetailsFragment = AdvertDetailsFragment()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, advertDetailsFragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }
+
 
 

@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface SimpleApi {
-    @GET("listing?sort=1&sortDirection=0&take=10")
+    @GET("listing?sort=1&sortDirection=0&take=5")
     suspend fun fetchPost(): Response<List<PostModel>>
 
 }
