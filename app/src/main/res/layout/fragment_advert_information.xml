@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- İlan No -->
+        <TextView
+            android:id="@+id/textIlanNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="İlan No"
+            android:padding="5dp"/>
+
+        <!-- İlan Tarihi -->
+        <TextView
+            android:id="@+id/textIlanTarihi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="İlan Tarihi"
+            android:padding="5dp" />
+
+        <!-- Marka -->
+        <TextView
+            android:id="@+id/textMarka"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marka"
+            android:padding="5dp"/>
+
+        <!-- Model -->
+        <TextView
+            android:id="@+id/textModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Model"
+            android:padding="5dp"/>
+
+        <!-- Yıl -->
+        <TextView
+            android:id="@+id/textYil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yıl"
+            android:padding="5dp"/>
+
+        <!-- Kilometre -->
+        <TextView
+            android:id="@+id/textKilometre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kilometre"
+            android:padding="5dp"/>
+
+        <!-- Renk -->
+        <TextView
+            android:id="@+id/textRenk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Renk"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+</FrameLayout>

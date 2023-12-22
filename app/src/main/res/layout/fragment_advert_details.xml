@@ -116,7 +116,7 @@
                 android:textStyle="bold"
                 android:layout_below="@id/locationLayout"
                 android:paddingLeft="12dp"/>
-            <!-- Fiyat
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                 android:layout_below="@id/tabLayout"
                 android:background="@color/white"/>
 
--->
+
         </RelativeLayout>
 
     </ScrollView>
