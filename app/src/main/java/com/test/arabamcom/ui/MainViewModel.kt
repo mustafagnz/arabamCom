@@ -1,6 +1,7 @@
 package com.test.arabamcom.ui
 
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,11 +27,19 @@ class MainViewModel : ViewModel() {
 
 
     private val _selectedPost = MutableLiveData<PostModel>()
+
     val selectedPost: LiveData<PostModel> get() = _selectedPost
 
     fun setSelectedPost(post: PostModel) {
-        _selectedPost.value = post
+        if (post != null) {
+            _selectedPost.value = post
+            Log.d(TAG, "setSelectedPost: LiveData dolu")
+
+        } else {
+            Log.d(TAG, "setSelectedPost: LiveData boş")
+        }
     }
+
     // MainViewModel
     fun fetchPost(){
         viewModelScope.launch {

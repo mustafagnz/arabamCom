@@ -20,15 +20,17 @@ class AdvertDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         mainViewModel.selectedPost.observe(viewLifecycleOwner){post ->
-            view?.findViewById<TextView>(R.id.textTitle)?.text = post.title
-            view?.findViewById<TextView>(R.id.textIlce)?.text = post.location.townName
-            view?.findViewById<TextView>(R.id.textIl)?.text = post.location.cityName
-            view?.findViewById<TextView>(R.id.textFiyat)?.text = "${post.price} TL"
+            Log.d("AdvertDetailsFragment", "Post observed: ${post.title}")
 
+            view.findViewById<TextView>(R.id.textTitle)?.text = post.title
+            view.findViewById<TextView>(R.id.textIlce)?.text = post.location.townName
+            view.findViewById<TextView>(R.id.textIl)?.text = post.location.cityName
+            view.findViewById<TextView>(R.id.textFiyat)?.text = "${post.price} TL"
         }
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

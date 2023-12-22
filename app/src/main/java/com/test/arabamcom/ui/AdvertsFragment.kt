@@ -49,10 +49,7 @@ class AdvertsFragment : Fragment() {
             }
         }
 
-        postAdapter.setOnItemClickListener { post ->
-            mainViewModel.setSelectedPost(post)
-            navigateToAdvertDetailsFragment()
-        }
+
     }
 
     private fun navigateToAdvertDetailsFragment() {

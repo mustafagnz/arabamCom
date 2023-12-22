@@ -25,12 +25,6 @@ class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<Po
         return PostViewHolder(view)
     }
 
-    private var onItemClickListener: ((PostModel) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (PostModel) -> Unit) {
-        onItemClickListener = listener
-    }
-
     fun getPosts(title: String): List<PostModel> {
         return currentList
     }
