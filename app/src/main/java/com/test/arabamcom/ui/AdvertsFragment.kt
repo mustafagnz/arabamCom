@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.arabamcom.R
 import com.test.arabamcom.adapter.PostAdapter
+import com.test.arabamcom.api.PostModel
 
 class AdvertsFragment : Fragment() {
 
@@ -35,16 +36,16 @@ class AdvertsFragment : Fragment() {
 
         val postAdapter = PostAdapter { post ->
             mainViewModel.setSelectedPost(post)
-            navigateToAdvertDetailsFragment()
+            navigateToAdvertDetailsFragment(post)
         }
         recyclerView.adapter = postAdapter
 
         mainViewModel.post.observe(viewLifecycleOwner) { postModelList ->
             postAdapter.submitList(postModelList)
             Log.d(TAG, "onViewCreated: veri var")
-            // Burada, postModelList'in boş olup olmadığını kontrol edebilirsiniz
+
             if (postModelList.isEmpty()) {
-                // Veri yoksa, kullanıcıya bir bildirim göstermek veya gerekli işlemleri yapmak için burada kod ekleyebilirsiniz.
+
                 Log.d(TAG, "onViewCreated: veri yok")
             }
         }
@@ -52,13 +53,17 @@ class AdvertsFragment : Fragment() {
 
     }
 
-    private fun navigateToAdvertDetailsFragment() {
+    private fun navigateToAdvertDetailsFragment(post: PostModel) {
         val advertDetailsFragment = AdvertDetailsFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("selected_post", post)
+        advertDetailsFragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, advertDetailsFragment)
             .addToBackStack(null)
             .commit()
     }
+
 }
 
 

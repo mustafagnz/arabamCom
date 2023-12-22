@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.test.arabamcom.R
 import com.test.arabamcom.adapter.PostAdapter
+import com.test.arabamcom.api.PostModel
 
 
 class AdvertDetailsFragment : Fragment() {
@@ -20,8 +21,8 @@ class AdvertDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        mainViewModel.selectedPost.observe(viewLifecycleOwner){post ->
+        val selectedPost = arguments?.getSerializable("selected_post") as? PostModel
+        selectedPost?.let { post ->
             Log.d("AdvertDetailsFragment", "Post observed: ${post.title}")
 
             view.findViewById<TextView>(R.id.textTitle)?.text = post.title

@@ -24,7 +24,7 @@ data class PostModel(
     val properties: List<Property>,
     val text: String,
     val userInfo: UserInfo
-)
+): java.io.Serializable
 
 
 data class Location(

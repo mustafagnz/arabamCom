@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
-import com.test.arabamcom.ui.AdvertDetailsFragment
 import com.test.arabamcom.ui.MainViewModel
-
 
 // PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
 class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
@@ -28,8 +26,6 @@ class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<Po
     fun getPosts(title: String): List<PostModel> {
         return currentList
     }
-
-
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bindView(post)
@@ -65,15 +61,12 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         ilanIlce.text = postModel.location.townName
         ilanFiyat.text = (postModel.price.toString() + "TL")
 
-        // PostModel.photos boş değilse ve en az bir fotoğraf varsa Glide kullan
         if (!postModel.photos.isNullOrEmpty()) {
             Glide.with(itemView.context)
-                .load(postModel.photos.first())
-                .placeholder(R.drawable.ic_launcher_background)
+                .load(postModel.photos)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(ilanResim)
         } else {
-            // Eğer fotoğraf yoksa varsayılan bir resim kullanabilirsiniz
             ilanResim.setImageResource(R.drawable.ic_launcher_background)
         }
     }
