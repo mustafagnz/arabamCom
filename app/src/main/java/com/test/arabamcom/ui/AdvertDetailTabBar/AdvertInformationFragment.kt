@@ -1,18 +1,22 @@
 package com.test.arabamcom.ui.AdvertDetailTabBar
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
 
 class AdvertInformationFragment : Fragment() {
 
+
     companion object {
-        private const val ARG_POST_MODEL = "arg_post_model"
+        const val ARG_POST_MODEL = "arg_post_model"
 
         fun newInstance(postModel: PostModel): AdvertInformationFragment {
             val fragment = AdvertInformationFragment()
@@ -27,28 +31,22 @@ class AdvertInformationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Fragment'ın bağlı olduğu Activity'nin Context'ini al
+
         val context = requireContext()
-
-        // Fragment'ın layout dosyasını inflate et
         val view = inflater.inflate(R.layout.fragment_advert_information, container, false)
-
-        // Arguments'ı kontrol et ve PostModel'i al
         val postModel = arguments?.getSerializable(ARG_POST_MODEL) as? PostModel
 
-        // PostModel null değilse, ilgili TextView'lere bilgileri set et
+        Log.d("informationFragment", "postModel before let: $postModel")
         postModel?.let {
-            view.findViewById<TextView>(R.id.textIlanNo).text = "İlan No: ${it.id}"
-            view.findViewById<TextView>(R.id.textIlanTarihi).text = "İlan Tarihi: ${it.dateFormatted}"
-            view.findViewById<TextView>(R.id.textMarka).text = "Marka: ${it.category.name}"
-            view.findViewById<TextView>(R.id.textModel).text = "Model: ${it.modelName}"
-            view.findViewById<TextView>(R.id.textYil).text = "Yıl: ${it.date}"
-            view.findViewById<TextView>(R.id.textKilometre).text =
-                "Kilometre: ${it.properties.find { prop -> prop.name == "Kilometre" }?.value ?: ""}"
-            view.findViewById<TextView>(R.id.textRenk).text =
-                "Renk: ${it.properties.find { prop -> prop.name == "Renk" }?.value ?: ""}"
+            Log.d("informationFragment", "postModel inside let: $it")
+            view.findViewById<TextView>(R.id.textIlanNo).text = it.id.toString()
+            view.findViewById<TextView>(R.id.textIlanTarihi).text = it.dateFormatted
+            view.findViewById<TextView>(R.id.textMarka).text = it.category.name
+            view.findViewById<TextView>(R.id.textModel).text = it.modelName
+            view.findViewById<TextView>(R.id.textYil).text = it.date
         }
 
+        Log.d("informationFragment", "postModel after let: $postModel")
         // Oluşturulan view'i geri döndür
         return view
     }

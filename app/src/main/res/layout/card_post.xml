@@ -8,9 +8,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
-    <!-- res/layout/recyclerview_item_card.xml -->
-
     <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"

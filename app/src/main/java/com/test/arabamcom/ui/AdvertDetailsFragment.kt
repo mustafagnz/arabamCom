@@ -1,11 +1,13 @@
 package com.test.arabamcom.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
@@ -24,6 +26,18 @@ class AdvertDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val backButton: ImageButton = view.findViewById(R.id.backButton)
+        backButton.setOnClickListener {
+            // Geri gitme işlemi
+            requireActivity().onBackPressed()
+        }
+        val shareButton: ImageButton = view.findViewById(R.id.shareButton)
+        shareButton.setOnClickListener {
+            // Paylaşım işlemi
+            shareAdvert()
+        }
+
+
         val selectedPost = arguments?.getSerializable("selected_post") as? PostModel
         selectedPost?.let { post ->
             Log.d("AdvertDetailsFragment", "Post observed: ${post.title}")
@@ -37,15 +51,32 @@ class AdvertDetailsFragment : Fragment() {
         val viewPager: ViewPager = view.findViewById(R.id.viewPagerTabs)
         val tabLayout: TabLayout = view.findViewById(R.id.tabLayout)
 
-        tabLayout.setupWithViewPager(viewPager)
+        val advertInformationFragment = AdvertInformationFragment.newInstance(selectedPost!!)
+        val advertDescriptionFragment = AdvertDescriptionFragment.newInstance(selectedPost!!)
 
         val adapter = ViewPagerAdapter(childFragmentManager)
-        adapter.addFragment(AdvertInformationFragment(), "İlan Bilgileri")
-        adapter.addFragment(AdvertDescriptionFragment(), "Açıklama")
+        adapter.addFragment(advertInformationFragment, "İlan Bilgileri")
+        adapter.addFragment(advertDescriptionFragment, "Açıklama")
 
         viewPager.adapter = adapter
-
+        tabLayout.setupWithViewPager(viewPager)
     }
+
+    private fun shareAdvert() {
+        val selectedPost = arguments?.getSerializable("selected_post") as? PostModel
+
+        // Paylaşım metni
+        val shareText = "${selectedPost?.title} - ${selectedPost?.location?.cityName}, ${selectedPost?.location?.townName} - ${selectedPost?.price} TL"
+
+        // Paylaşım intenti
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText)
+
+        // Paylaşım intentini başlatma
+        startActivity(Intent.createChooser(shareIntent, "İlanı Paylaş"))
+    }
+
 
 
     override fun onCreateView(
