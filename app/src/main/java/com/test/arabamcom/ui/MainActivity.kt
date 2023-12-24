@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, AdvertsFragment())
             .commit()
+
     }
 }
 

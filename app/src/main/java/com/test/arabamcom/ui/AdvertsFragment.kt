@@ -6,6 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +22,9 @@ class AdvertsFragment : Fragment() {
 
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
+    private lateinit var toolbar: Toolbar
+    private lateinit var spinner: Spinner
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +37,9 @@ class AdvertsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerView)
+        toolbar = view.findViewById(R.id.toolbar)
+        spinner = view.findViewById(R.id.spinner)
+
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
 
@@ -49,6 +59,42 @@ class AdvertsFragment : Fragment() {
             }
         }
 
+        // Fiyat sıralama seçenekleri
+        val priceSortOptions = arrayOf("Sıralama","Artan Fiyat", "Azalan Fiyat", "Artan Yıl", "Azalan Yıl")
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, priceSortOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                // Seçilen sıralama seçeneğine göre RecyclerView'yi güncelleyin
+                when (position) {
+                    1 -> sortAscendingPrice()
+                    2 -> sortDescendingPrice()
+                    3 -> sortAscendingYear()
+                    4 -> sortDescendingYear()
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+    }
+    private fun sortAscendingPrice() {
+        // Artan fiyat sıralama işlemleri
+        // RecyclerView'yi güncelleyin
+    }
+
+    private fun sortDescendingPrice() {
+        // Azalan fiyat sıralama işlemleri
+        // RecyclerView'yi güncelleyin
+    }
+
+    private fun sortAscendingYear(){
+
+    }
+
+    private fun sortDescendingYear(){
 
     }
 

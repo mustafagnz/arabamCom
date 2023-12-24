@@ -62,7 +62,6 @@ class SplashActivity : AppCompatActivity() {
 
 
     private fun showSplashScreenWithDelay() {
-        // Belirtilen süre sonra ana ekranı başlat
         val handler = Handler()
         handler.postDelayed({
             val intent = Intent(this, MainActivity::class.java)
@@ -79,8 +78,6 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
             .setNegativeButton("Tekrar Dene") { _: DialogInterface?, _: Int ->
-                // Tekrar Dene butonuna basıldığında ne yapılacağını buraya yazabilirsiniz.
-                // Örneğin, ağ durumunu tekrar kontrol edebilirsiniz.
                 CoroutineScope(Dispatchers.Main).launch{
                     if (isNetworkAvailable()) {
                         showSplashScreenWithDelay()
