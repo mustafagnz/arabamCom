@@ -15,7 +15,6 @@ import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
 import com.test.arabamcom.ui.MainViewModel
 
-// PostAdapter'ı ListAdapter'dan türetiyoruz ve PostModel sınıfını parametre olarak belirtiyoruz
 class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {

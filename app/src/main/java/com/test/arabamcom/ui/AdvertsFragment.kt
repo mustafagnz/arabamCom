@@ -59,7 +59,7 @@ class AdvertsFragment : Fragment() {
             }
         }
 
-        // Fiyat sıralama seçenekleri
+
         val priceSortOptions = arrayOf("Sıralama","Artan Fiyat", "Azalan Fiyat", "Artan Yıl", "Azalan Yıl")
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, priceSortOptions)
@@ -68,7 +68,7 @@ class AdvertsFragment : Fragment() {
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // Seçilen sıralama seçeneğine göre RecyclerView'yi güncelleyin
+
                 when (position) {
                     1 -> sortAscendingPrice()
                     2 -> sortDescendingPrice()

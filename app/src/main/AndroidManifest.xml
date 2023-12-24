@@ -17,7 +17,6 @@
         android:theme="@style/Theme.ArabamCom"
         tools:targetApi="31">
 
-        <!-- Splash screen Activity'yi başlangıç noktası olarak belirt -->
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
@@ -31,7 +30,6 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
-            <!-- Ana ekrana ait diğer konfigürasyonlar buraya eklenebilir -->
         </activity>
     </application>
 

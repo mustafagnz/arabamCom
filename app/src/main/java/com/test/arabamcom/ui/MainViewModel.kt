@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
             val response = ApiService.api.fetchPost()
             if (response.isSuccessful){
                 response.body()?.let { post ->
-                    _post.value = post // API'den dönen PostModel listesini alıyoruz
+                    _post.value = post
                     _hasError.value = false
                 } ?: run {
                     _hasError.value = true

@@ -36,16 +36,10 @@ class AdvertDescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Fragment'ın bağlı olduğu Activity'nin Context'ini al
+
         val context = requireContext()
-
-        // Fragment'ın layout dosyasını inflate et
         val view = inflater.inflate(R.layout.fragment_advert_description, container, false)
-
-        // Arguments'ı kontrol et ve PostModel'i al
         val postModel = arguments?.getSerializable(AdvertInformationFragment.ARG_POST_MODEL) as? PostModel
-
-        // PostModel null değilse, ilgili TextView'lere bilgileri set et
         Log.d("informationFragment", "postModel before let: $postModel")
         postModel?.let {
             Log.d("informationFragment", "postModel inside let: $it")
