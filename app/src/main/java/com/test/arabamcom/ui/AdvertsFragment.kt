@@ -81,21 +81,24 @@ class AdvertsFragment : Fragment() {
         }
     }
     private fun sortAscendingPrice() {
-        // Artan fiyat sıralama işlemleri
-        // RecyclerView'yi güncelleyin
+        val sortedList = mainViewModel.post.value?.sortedBy { it.price }
+        (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
+
     private fun sortDescendingPrice() {
-        // Azalan fiyat sıralama işlemleri
-        // RecyclerView'yi güncelleyin
+        val sortedList = mainViewModel.post.value?.sortedByDescending { it.price }
+        (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
     private fun sortAscendingYear(){
-
+        val sortedList = mainViewModel.post.value?.sortedByDescending { it.date}
+        (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
     private fun sortDescendingYear(){
-
+        val sortedList = mainViewModel.post.value?.sortedByDescending { it.date }
+        (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
     private fun navigateToAdvertDetailsFragment(post: PostModel) {
