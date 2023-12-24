@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
+
     private val _post = MutableLiveData<List<PostModel>>()
     val post: LiveData<List<PostModel>>
         get() = _post
