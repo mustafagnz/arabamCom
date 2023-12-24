@@ -97,7 +97,7 @@ class AdvertsFragment : Fragment() {
     }
 
     private fun sortDescendingYear(){
-        val sortedList = mainViewModel.post.value?.sortedByDescending { it.date }
+        val sortedList = mainViewModel.post.value?.sortedBy { it.date }
         (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
