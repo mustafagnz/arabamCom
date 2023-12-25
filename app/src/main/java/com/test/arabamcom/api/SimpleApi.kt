@@ -9,7 +9,6 @@ interface SimpleApi {
 
 }
 
-
 data class PostModel(
     val id: Long,
     val title: String,

@@ -43,21 +43,32 @@ class MainViewModel : ViewModel() {
     }
 
     // MainViewModel
-    fun fetchPost(){
+    fun fetchPost() {
         viewModelScope.launch {
-            val response = ApiService.api.fetchPost()
-            if (response.isSuccessful){
-                response.body()?.let { post ->
-                    _post.value = post
-                    _hasError.value = false
-                } ?: run {
+            try {
+                val response = ApiService.api.fetchPost()
+                if (response.isSuccessful) {
+                    Log.d(TAG, "fetchPost: API'den veri geldi")
+
+                    response.body()?.let { postList ->
+                        _post.value = postList
+                        _hasError.value = false
+                    } ?: run {
+                        _hasError.value = true
+                        Log.e(TAG, "fetchPost: API'den null veri döndü")
+                    }
+                } else {
                     _hasError.value = true
+                    Log.e(TAG, "fetchPost: API'den başarısız cevap alındı. HTTP kodu: ${response.code()}")
                 }
-            } else {
+            } catch (e: Exception) {
+                // Hata durumu
                 _hasError.value = true
+                Log.e(TAG, "fetchPost error: ${e.message}", e)
             }
         }
     }
+
 
 
 
