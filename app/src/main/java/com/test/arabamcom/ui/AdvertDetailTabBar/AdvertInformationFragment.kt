@@ -14,7 +14,6 @@ import com.test.arabamcom.api.PostModel
 
 class AdvertInformationFragment : Fragment() {
 
-
     companion object {
         const val ARG_POST_MODEL = "arg_post_model"
 
@@ -32,7 +31,6 @@ class AdvertInformationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val context = requireContext()
         val view = inflater.inflate(R.layout.fragment_advert_information, container, false)
         val postModel = arguments?.getSerializable(ARG_POST_MODEL) as? PostModel
 
@@ -43,13 +41,18 @@ class AdvertInformationFragment : Fragment() {
             view.findViewById<TextView>(R.id.textIlanTarihi).text = it.dateFormatted
             view.findViewById<TextView>(R.id.textMarka).text = it.category.name
             view.findViewById<TextView>(R.id.textModel).text = it.modelName
-            view.findViewById<TextView>(R.id.textYil).text = it.date
+            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "year" }.toString()
+            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "km" }.toString()
+            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "color" }.toString()
+
+
         }
 
+
+
         Log.d("informationFragment", "postModel after let: $postModel")
-        // Oluşturulan view'i geri döndür
+
         return view
     }
-
 }
 

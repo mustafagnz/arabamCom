@@ -92,12 +92,12 @@ class AdvertsFragment : Fragment() {
     }
 
     private fun sortAscendingYear(){
-        val sortedList = mainViewModel.post.value?.sortedByDescending { it.date}
+        val sortedList = mainViewModel.post.value?.sortedBy {  it.properties.find { property -> property.name == "year" }.toString() }
         (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
     private fun sortDescendingYear(){
-        val sortedList = mainViewModel.post.value?.sortedBy { it.date }
+        val sortedList = mainViewModel.post.value?.sortedByDescending { it.properties.find { property -> property.name == "year" }.toString() }
         (recyclerView.adapter as PostAdapter).submitList(sortedList)
     }
 
