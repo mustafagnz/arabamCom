@@ -17,8 +17,8 @@ class AdvertDescriptionFragment : Fragment() {
     companion object {
         private const val ARG_POST_MODEL = "arg_post_model"
 
-        fun newInstance(postModel: PostModel): AdvertInformationFragment {
-            val fragment = AdvertInformationFragment()
+        fun newInstance(postModel: PostModel): AdvertDescriptionFragment {
+            val fragment = AdvertDescriptionFragment()
             val args = Bundle()
             args.putSerializable(ARG_POST_MODEL, postModel)
             fragment.arguments = args

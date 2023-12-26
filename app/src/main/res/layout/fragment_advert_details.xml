@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/advertDetailScreen"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.AdvertDetailsFragment"
-    >
+    tools:context=".ui.AdvertDetailsFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <!-- TabBar -->
             <LinearLayout
                 android:id="@+id/tabBarLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <!-- Back Button -->
                 <ImageButton
@@ -31,8 +36,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:src="@drawable/back"/>
-
+                    android:src="@drawable/back"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <!-- Ilan Detayı Tab -->
                 <TextView
@@ -44,7 +49,9 @@
                     android:text="İlan Detayı"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/backButton"
+                    app:layout_constraintEnd_toStartOf="@+id/shareButton"/>
 
                 <!-- Paylaş Button -->
                 <ImageButton
@@ -52,33 +59,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:src="@drawable/share" />
+                    android:src="@drawable/share"
+                    app:layout_constraintEnd_toEndOf="parent"/>
             </LinearLayout>
 
             <!-- Ilan Fotoğrafları ve Detayları -->
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/image"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="200dp"
-                android:layout_below="@id/tabBarLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/tabBarLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:clickable="true"/>
 
             <!-- Ilan Başlığı -->
             <TextView
                 android:id="@+id/textTitle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image"
+                app:layout_constraintTop_toBottomOf="@+id/image"
                 android:padding="10dp"
                 android:text="Sahibinden volskwagen cc 1.4 TSİ 2016 Model"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <!-- İl ve İlçe -->
             <LinearLayout
                 android:id="@+id/locationLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textTitle"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -115,30 +126,35 @@
                 android:textColor="@color/red"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_below="@id/locationLayout"
+                app:layout_constraintTop_toBottomOf="@+id/locationLayout"
                 android:paddingLeft="12dp"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="@color/red"
                 app:tabSelectedTextColor="@color/red"
                 app:tabTextColor="@color/black"
-                android:layout_below="@id/textFiyat"
+                app:layout_constraintTop_toBottomOf="@+id/textFiyat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:tabTextAppearance="@style/TabLayoutTextStyle"/>
-
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPagerTabs"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/tabLayout"
-                android:background="@color/white"/>
+                android:layout_width="0dp"
+                android:layout_height="320dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

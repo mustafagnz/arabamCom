@@ -37,19 +37,27 @@ class AdvertInformationFragment : Fragment() {
         Log.d("informationFragment", "postModel before let: $postModel")
         postModel?.let {
             Log.d("informationFragment", "postModel inside let: $it")
-            view.findViewById<TextView>(R.id.textIlanNo).text = it.id.toString()
-            view.findViewById<TextView>(R.id.textIlanTarihi).text = it.dateFormatted
-            view.findViewById<TextView>(R.id.textMarka).text = it.category.name
-            view.findViewById<TextView>(R.id.textModel).text = it.modelName
-            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "year" }.toString()
-            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "km" }.toString()
-            view.findViewById<TextView>(R.id.textYil).text = it.properties.find { property -> property.name == "color" }.toString()
+            view.findViewById<TextView>(R.id.textIlanNo).text = ("İLAN NO: " + it.id.toString())
+            view.findViewById<TextView>(R.id.textIlanTarihi).text = ("İLAN TARİHİ: " + it.dateFormatted)
+            view.findViewById<TextView>(R.id.textMarka).text = ("MARKA: " + it.category.name)
+            view.findViewById<TextView>(R.id.textModel).text = ("MODEL: "+ it.modelName)
+
+            val yearProperty = it.properties.find { property -> property.name == "year" }
+            val yearValue = yearProperty?.value
+            view.findViewById<TextView>(R.id.textYil).text = "YIL: $yearValue"
+
+
+            val kmProperty = it.properties.find { property -> property.name == "km" }
+            val kmValue = kmProperty?.value
+            view.findViewById<TextView>(R.id.textKilometre).text = "KİLOMETRE: $kmValue"
+
+
+            val colorProperty = it.properties.find { property -> property.name == "color" }
+            val colorValue = colorProperty?.value
+            view.findViewById<TextView>(R.id.textRenk).text = "RENK: $colorValue"
 
 
         }
-
-
-
         Log.d("informationFragment", "postModel after let: $postModel")
 
         return view

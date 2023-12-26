@@ -38,6 +38,8 @@ class AdvertDetailsFragment : Fragment() {
         }
 
 
+
+
         val selectedPost = arguments?.getSerializable("selected_post") as? PostModel
         selectedPost?.let { post ->
             Log.d("AdvertDetailsFragment", "Post observed: ${post.title}")
@@ -46,6 +48,8 @@ class AdvertDetailsFragment : Fragment() {
             view.findViewById<TextView>(R.id.textIlce)?.text = "${post.location.townName}/"
             view.findViewById<TextView>(R.id.textIl)?.text = post.location.cityName
             view.findViewById<TextView>(R.id.textFiyat)?.text = "${post.price} TL"
+
+
         }
 
         val viewPager: ViewPager = view.findViewById(R.id.viewPagerTabs)
