@@ -1,14 +1,13 @@
 package com.test.arabamcom.ui.AdvertDetailTabBar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.test.arabamcom.R
+import androidx.fragment.app.Fragment
 import com.test.arabamcom.api.PostModel
+import com.test.arabamcom.databinding.FragmentAdvertInformationBinding
 
 class AdvertInformationFragment : Fragment() {
 
@@ -24,38 +23,38 @@ class AdvertInformationFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentAdvertInformationBinding? = null
+    private val binding get() = _binding!!
+
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentAdvertInformationBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val view = inflater.inflate(R.layout.fragment_advert_information, container, false)
         val postModel = arguments?.getSerializable(ARG_POST_MODEL) as? PostModel
+        postModel?.let { model ->
+            binding.advertNo.text = "İLAN NO: ${model.id}"
+            binding.advertDate.text = "İLAN TARİHİ: ${model.dateFormatted}"
+            binding.advertBrand.text = "MARKA: ${model.category.name}"
+            binding.advertModel.text = "MODEL: ${model.modelName}"
 
-        Log.d("informationFragment", "postModel before let: $postModel")
-        postModel?.let {
-            Log.d("informationFragment", "postModel inside let: $it")
-            view.findViewById<TextView>(R.id.advertNo).text = ("İLAN NO: " + it.id.toString())
-            view.findViewById<TextView>(R.id.advertDate).text = ("İLAN TARİHİ: " + it.dateFormatted)
-            view.findViewById<TextView>(R.id.advertBrand).text = ("MARKA: " + it.category.name)
-            view.findViewById<TextView>(R.id.advertModel).text = ("MODEL: "+ it.modelName)
+            // map kullanıldı
+            val propertiesMap = model.properties.associateBy { it.name }
 
-            val yearProperty = it.properties.find { property -> property.name == "year" }
-            val yearValue = yearProperty?.value
-            view.findViewById<TextView>(R.id.advertYear).text = "YIL: $yearValue"
-
-            val kmProperty = it.properties.find { property -> property.name == "km" }
-            val kmValue = kmProperty?.value
-            view.findViewById<TextView>(R.id.advertKM).text = "KİLOMETRE: $kmValue"
-
-            val colorProperty = it.properties.find { property -> property.name == "color" }
-            val colorValue = colorProperty?.value
-            view.findViewById<TextView>(R.id.advertColor).text = "RENK: $colorValue"
-
+            // Özellikleri map üzerinden almak
+            binding.advertYear.text = "YIL: ${propertiesMap["year"]?.value ?: "Bilinmiyor"}"
+            binding.advertKM.text = "KİLOMETRE: ${propertiesMap["km"]?.value ?: "Bilinmiyor"}"
+            binding.advertColor.text = "RENK: ${propertiesMap["color"]?.value ?: "Bilinmiyor"}"
         }
-        Log.d("informationFragment", "postModel after let: $postModel")
 
         return view
     }
-}
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

@@ -1,16 +1,12 @@
 package com.test.arabamcom.ui.AdvertDetailTabBar
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.test.arabamcom.R
+import androidx.fragment.app.Fragment
 import com.test.arabamcom.api.PostModel
-
+import com.test.arabamcom.databinding.FragmentAdvertDescriptionBinding
 
 class AdvertDescriptionFragment : Fragment() {
 
@@ -26,31 +22,23 @@ class AdvertDescriptionFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private var _binding: FragmentAdvertDescriptionBinding? = null
+    private val binding get() = _binding!!
 
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentAdvertDescriptionBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-    @SuppressLint("MissingInflatedId")
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val context = requireContext()
-        val view = inflater.inflate(R.layout.fragment_advert_description, container, false)
-        val postModel = arguments?.getSerializable(AdvertInformationFragment.ARG_POST_MODEL) as? PostModel
-        Log.d("informationFragment", "postModel before let: $postModel")
+        val postModel = arguments?.getSerializable(ARG_POST_MODEL) as? PostModel
         postModel?.let {
-            Log.d("informationFragment", "postModel inside let: $it")
-            view.findViewById<TextView>(R.id.description).text = it.text
-
+            binding.description.text = it.text
         }
-
-        Log.d("informationFragment", "postModel after let: $postModel")
 
         return view
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
