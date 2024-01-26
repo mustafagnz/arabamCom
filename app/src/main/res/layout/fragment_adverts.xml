@@ -6,20 +6,20 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Toolbar ekleyin -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/red"
         android:elevation="4dp"
-        app:title="ILANLAR"
+        app:title="@string/advert_title"
         app:titleTextColor="@color/white"
         android:theme="?attr/actionBarTheme" />
 
-    <!-- Spinner ekleyin -->
+    <!-- Spinner -->
     <Spinner
-        android:padding="6dp"
+        android:padding="@dimen/margin_small"
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true" />
 
 
-    <!-- RecyclerView ekleyin -->
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

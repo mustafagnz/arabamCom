@@ -1,6 +1,5 @@
 package com.test.arabamcom.adapter
 
-import android.util.Log
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
@@ -8,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.arabamcom.R
 import com.test.arabamcom.api.PostModel
-import com.test.arabamcom.ui.MainViewModel
 
 class PostAdapter(private val onItemClick: (PostModel) -> Unit) : ListAdapter<PostModel, PostViewHolder>(PostModelDiffCallback()) {
 
@@ -48,11 +45,11 @@ class PostModelDiffCallback : DiffUtil.ItemCallback<PostModel>() {
 }
 
 class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val ilanBaslik: TextView = itemView.findViewById(R.id.ilanBaslik)
-    private val ilanIl: TextView = itemView.findViewById(R.id.ilanIl)
-    private val ilanIlce: TextView = itemView.findViewById(R.id.ilanIlce)
-    private val ilanFiyat: TextView = itemView.findViewById(R.id.ilanFiyat)
-    private val ilanResim: ImageView = itemView.findViewById(R.id.ilanResim)
+    private val ilanBaslik: TextView = itemView.findViewById(R.id.cardPostTitle)
+    private val ilanIl: TextView = itemView.findViewById(R.id.cardPostCity)
+    private val ilanIlce: TextView = itemView.findViewById(R.id.cardPostRegion)
+    private val ilanFiyat: TextView = itemView.findViewById(R.id.cardPostPrice)
+    private val ilanResim: ImageView = itemView.findViewById(R.id.cardPostImage)
 
     fun bindView(postModel: PostModel) {
         ilanBaslik.text = postModel.title

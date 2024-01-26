@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">arabamCom</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="card_post_title">Title</string>
+    <string name="card_post_city">City</string>
+    <string name="card_post_region">Region</string>
+    <string name="card_post_price">Price</string>
+
+
+    <string name="advert_detail_title_bar">İlan Detayı</string>
+    <string name="advert_detail_title">Name</string>
+    <string name="advert_detail_city">City</string>
+    <string name="advert_detail_region">Region</string>
+    <string name="advert_detail_price">Price</string>
+
+    <string name="advert_title">İLANLAR</string>
+
+    <string name="advert_information_advert_no">İlan No</string>
+    <string name="advert_information_advert_date">İlan Tarihi</string>
+    <string name="advert_information_advert_brand">Marka</string>
+    <string name="advert_information_advert_model">Model</string>
+    <string name="advert_information_advert_year">Yıl</string>
+    <string name="advert_information_advert_km">Kilometre</string>
+    <string name="advert_information_advert_color">Renk</string>
 </resources>

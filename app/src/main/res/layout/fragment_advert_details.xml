@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:padding="@dimen/margin_large"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -41,14 +41,14 @@
 
                 <!-- Ilan Detayı Tab -->
                 <TextView
-                    android:id="@+id/tabIlanDetayi"
+                    android:id="@+id/advertDetailTitleBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="İlan Detayı"
+                    android:text="@string/advert_detail_title_bar"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_large"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/backButton"
                     app:layout_constraintEnd_toStartOf="@+id/shareButton"/>
@@ -75,13 +75,13 @@
 
             <!-- Ilan Başlığı -->
             <TextView
-                android:id="@+id/textTitle"
+                android:id="@+id/advertDetailTitleName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/image"
-                android:padding="10dp"
-                android:text="Sahibinden volskwagen cc 1.4 TSİ 2016 Model"
-                android:textSize="16sp"
+                android:padding="@dimen/margin_medium"
+                android:text="@string/advert_detail_title"
+                android:textSize="@dimen/text_large"
                 android:textStyle="bold"/>
 
             <!-- İl ve İlçe -->
@@ -89,9 +89,9 @@
                 android:id="@+id/locationLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/textTitle"
+                app:layout_constraintTop_toBottomOf="@+id/advertDetailTitleName"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="@dimen/margin_medium">
 
                 <!-- ikon -->
                 <ImageView
@@ -102,32 +102,32 @@
 
                 <!-- İlçe -->
                 <TextView
-                    android:id="@+id/textIlce"
+                    android:id="@+id/advertDetailRegion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="İlçe Adı,"
-                    android:textSize="14sp" />
+                    android:text="@string/advert_detail_region"
+                    android:textSize="@dimen/text_medium" />
 
                 <!-- İl -->
                 <TextView
-                    android:id="@+id/textIl"
+                    android:id="@+id/advertDetailCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="İl Adı"
-                    android:textSize="14sp" />
+                    android:text="@string/advert_detail_city"
+                    android:textSize="@dimen/text_medium" />
             </LinearLayout>
 
             <!-- Fiyat -->
             <TextView
-                android:id="@+id/textFiyat"
+                android:id="@+id/advertDetailPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.085.000 TL"
+                android:text="@string/advert_detail_price"
                 android:textColor="@color/red"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_xlarge"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/locationLayout"
-                android:paddingLeft="12dp"/>
+                android:paddingLeft="@dimen/margin_medium"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
@@ -136,7 +136,7 @@
                 app:tabIndicatorColor="@color/red"
                 app:tabSelectedTextColor="@color/red"
                 app:tabTextColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/textFiyat"
+                app:layout_constraintTop_toBottomOf="@+id/advertDetailPrice"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tabTextAppearance="@style/TabLayoutTextStyle"/>

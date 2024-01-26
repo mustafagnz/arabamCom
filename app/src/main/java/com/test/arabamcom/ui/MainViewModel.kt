@@ -1,7 +1,5 @@
 package com.test.arabamcom.ui
 
-
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,66 +11,54 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-
+    companion object {
+        private const val TAG = "MainViewModel"
+    }
 
     private val _post = MutableLiveData<List<PostModel>>()
-    val post: LiveData<List<PostModel>>
-        get() = _post
+    val post: LiveData<List<PostModel>> = _post
+
+    private val _hasError = MutableLiveData<Boolean>()
+    val hasError: LiveData<Boolean> = _hasError
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    private val _selectedPost = MutableLiveData<PostModel>()
+    val selectedPost: LiveData<PostModel> = _selectedPost
 
     init {
         fetchPost()
     }
 
-    private val _hasError = MutableLiveData<Boolean>()
-    val hasError: LiveData<Boolean>
-        get() = _hasError
-
-
-    private val _selectedPost = MutableLiveData<PostModel>()
-
-    val selectedPost: LiveData<PostModel> get() = _selectedPost
-
     fun setSelectedPost(post: PostModel) {
-        if (post != null) {
-            _selectedPost.value = post
-            Log.d(TAG, "setSelectedPost: LiveData dolu")
-
-        } else {
-            Log.d(TAG, "setSelectedPost: LiveData boş")
-        }
+        _selectedPost.value = post
+        Log.d(TAG, "setSelectedPost: LiveData dolu")
     }
 
-    // MainViewModel
     fun fetchPost() {
         viewModelScope.launch {
             try {
                 val response = ApiService.api.fetchPost()
                 if (response.isSuccessful) {
-                    Log.d(TAG, "fetchPost: API'den veri geldi")
-
-                    response.body()?.let { postList ->
-                        _post.value = postList
+                    response.body()?.let {
+                        _post.value = it
                         _hasError.value = false
-                    } ?: run {
+                    } ?: kotlin.run {
                         _hasError.value = true
+                        _errorMessage.value = "API'den null veri döndü"
                         Log.e(TAG, "fetchPost: API'den null veri döndü")
                     }
                 } else {
                     _hasError.value = true
+                    _errorMessage.value = "API'den başarısız cevap alındı. HTTP kodu: ${response.code()}"
                     Log.e(TAG, "fetchPost: API'den başarısız cevap alındı. HTTP kodu: ${response.code()}")
                 }
             } catch (e: Exception) {
-                // Hata durumu
                 _hasError.value = true
+                _errorMessage.value = "fetchPost error: ${e.message}"
                 Log.e(TAG, "fetchPost error: ${e.message}", e)
             }
         }
     }
-
-
-
-
-
 }
-
-

@@ -1,5 +1,7 @@
 <!-- activity_splash.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,9 +9,13 @@
     tools:context=".ui.SplashActivity">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/arabam_com_logo" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/arabam_com_logo"
+        app:layout_constraintDimensionRatio="W,1:2.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

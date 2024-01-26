@@ -4,84 +4,82 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/margin_medium">
 
         <!-- İlan No -->
         <TextView
-            android:id="@+id/textIlanNo"
+            android:id="@+id/advertNo"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="İlan No" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_no" />
 
         <!-- İlan Tarihi -->
         <TextView
-            android:id="@+id/textIlanTarihi"
+            android:id="@+id/advertDate"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="İlan Tarihi" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_date" />
 
         <!-- Marka -->
         <TextView
-            android:id="@+id/textMarka"
+            android:id="@+id/advertBrand"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Marka" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_brand" />
 
         <!-- Model -->
         <TextView
-            android:id="@+id/textModel"
+            android:id="@+id/advertModel"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Model" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_model" />
 
         <!-- Yıl -->
         <TextView
-            android:id="@+id/textYil"
+            android:id="@+id/advertYear"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Yıl" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_year" />
 
         <!-- Kilometre -->
         <TextView
-            android:id="@+id/textKilometre"
+            android:id="@+id/advertKM"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Kilometre" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_km" />
 
         <!-- Renk -->
         <TextView
-            android:id="@+id/textRenk"
+            android:id="@+id/advertColor"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Renk" />
+            android:padding="@dimen/margin_small"
+            android:text="@string/advert_information_advert_color" />
     </LinearLayout>
 
 </FrameLayout>

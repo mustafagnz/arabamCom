@@ -45,7 +45,6 @@ class SplashActivity : AppCompatActivity() {
                 try {
                     // Bir URL e istek atıyoruz
                     val command = "ping -c 1 google.com"
-
                     // Eğer ping başarılı olursa internet bağlantısı olduğu kabul edilir
                     Runtime.getRuntime().exec(command).waitFor() == 0
                 } catch (e: Exception) {
@@ -85,7 +84,6 @@ class SplashActivity : AppCompatActivity() {
                         showNoInternetDialog()
                     }
                 }
-
             }
             .setCancelable(false)
             .show()
